@@ -50,7 +50,7 @@ DARTH = (0,0,255)
 WHITE = (255,255,255)
 
 
-blades = [RED,YELLOW,GREEN,CYAN,BLUE,PURPLE,DARTH,KYLO]
+blades = [RED,YELLOW,GREEN,CYAN,BLUE,PURPLE,DARTH,WHITE,KYLO]
 
 bnum = 3
 
@@ -110,5 +110,3 @@ while not done:
   
     time.sleep(.25)
     
-
-
