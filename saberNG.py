@@ -32,12 +32,16 @@ def showtext(msg):
             clr = dc
         pixels[0] = clr
         pixels.show()
+        if code[x]== '-':
+            time.sleep(.25)
         for i in range(num_pixels-1):
             pos = num_pixels -1 - i
             pixels[pos]=pixels[pos-1]
         pixels[0]=blank
         pixels.show()
         time.sleep(.25)
+    time.sleep(1)
+    douse(.1)
         
 def color_chase(color, wait):
     for i in range(num_pixels):
@@ -69,15 +73,19 @@ WHITE = (255,255,255)
 
 
 blades = [RED,YELLOW,GREEN,CYAN,BLUE,PURPLE,DARTH,WHITE,KYLO]
+fonts = [blank,RED,YELLOW,GREEN,BLUE]
+FONT = ["","May the force be with you","do or do not","there is no try","I can do all things"]
+
 
 bnum = 3
 
 lit = False
 done = False
+fnum = 0
 
 blade = blades[bnum]
 ACTIVE = blade
-showtext("may the force be with you")
+showtext(FONT[4])
 
 while not done:
     blade = blades[bnum]
@@ -90,17 +98,21 @@ while not done:
     
     if Val == 1:
         if lit:
-            douse(.02)
-            lit = False
-        bnum = bnum + 1
-        pixels.fill(blank)
-        pixels.show()
-        if bnum > 7:
-            bnum = 0
-        
-        pixels[0] = blades[bnum]
-        pixels.show()
-        ACTIVE = blank
+            fnum = fnum + 1
+            if fnum > 4:
+                fnum = 0
+            pixels[1] = fonts[fnum]
+            pixels.show()
+        else:        
+            bnum = bnum + 1
+            pixels.fill(blank)
+            pixels.show()
+            if bnum > 8:
+                bnum = 0
+            
+            pixels[0] = blades[bnum]
+            pixels.show()
+            ACTIVE = blank
         
     if Val == 3:
         done = True
@@ -110,6 +122,8 @@ while not done:
             douse(.02)
             lit = False
         else:
+            if fnum > 0:
+                showtext(FONT[fnum])
             color_chase(blades[bnum],.01)
             ACTIVE = blades[bnum]
             lit = True
