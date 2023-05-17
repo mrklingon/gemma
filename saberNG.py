@@ -39,9 +39,9 @@ def showtext(msg):
             pixels[pos]=pixels[pos-1]
         pixels[0]=blank
         pixels.show()
-        time.sleep(.25)
+        time.sleep(.05)
     time.sleep(1)
-    douse(.1)
+    douse(.01)
         
 def color_chase(color, wait):
     for i in range(num_pixels):
@@ -82,7 +82,7 @@ bnum = 3
 lit = False
 done = False
 fnum = 0
-
+shown = False
 blade = blades[bnum]
 ACTIVE = blade
 showtext(FONT[4])
@@ -102,6 +102,7 @@ while not done:
             if fnum > 4:
                 fnum = 0
             pixels[1] = fonts[fnum]
+            shown = False
             pixels.show()
         else:        
             bnum = bnum + 1
@@ -122,8 +123,9 @@ while not done:
             douse(.02)
             lit = False
         else:
-            if fnum > 0:
+            if fnum>0 and shown == False:
                 showtext(FONT[fnum])
+                shown = True
             color_chase(blades[bnum],.01)
             ACTIVE = blades[bnum]
             lit = True
